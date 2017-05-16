@@ -10,8 +10,11 @@ const signUp = function (data) {
     data
   })
     .then((response) => {
+      console.log('this is response', response)
       store.userToken = response.user.token
-      console.log(store)
+      store.statusText = response.statusText
+      store.id = response.id
+      console.log('this is store: ', store)
     })
 }
 
@@ -25,6 +28,7 @@ const signIn = function (data) {
     console.log('This is the response when logging in: ', response)
     store.userToken = response.user.token
     store.id = response.user.id
+    store.statusText = response.statusText
   })
 }
 
