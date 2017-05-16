@@ -1,2 +1,38 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+$background-color: #4e4e4e;
+$font-color: #dfdfdf;
+$white: #fff;
+
+body {
+  background-color: $background-color;
+  color: $font-color;
+}
+
+.box {
+  border: 1px solid $white;
+}
+
+.tic {
+  font-size: 75px;
+  height: 100px;
+  text-align: center;
+}
+
+.rules {
+  font-size: 40px;
+  height: 600px;
+  text-align: center;
+}
+
+.signInModal {
+  color: black;
+  font-size: 30px;
+}
+
+.tile {
+  font-size: 75px;
+  height: 100px;
+  text-align: center;
+}

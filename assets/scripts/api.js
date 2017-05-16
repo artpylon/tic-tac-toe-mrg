@@ -5,7 +5,8 @@ const store = require('./store')
 
 const signUp = function (data) {
   console.log('data is', data)
-
+  console.log(config.apiOrigin)
+  console.log(config)
   return $.ajax({
     url: config.apiOrigin + '/sign-up',
     method: 'POST',
