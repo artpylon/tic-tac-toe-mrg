@@ -4,6 +4,8 @@ const config = require('./config')
 const store = require('./store')
 
 const signUp = function (data) {
+  console.log('data is', data)
+
   return $.ajax({
     url: config.apiOrigin + '/sign-up',
     method: 'POST',
@@ -22,6 +24,9 @@ const signIn = function (data) {
     method: 'POST',
     data
   })
+    .then((response) => {
+      store.userToken = response.user.token
+    })
 }
 
 module.exports = {
