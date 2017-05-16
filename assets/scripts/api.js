@@ -29,12 +29,25 @@ const signIn = function (data) {
 }
 
 const changePassword = function (data) {
-  console.log('this is the users token: ', store.userToken)
-  console.log('this is data variable at change password: ', data)
+  console.log('this is store at change-password ajax: ', store)
   return $.ajax({
     url: config.apiOrigin + '/change-password/' + store.id,
     method: 'PATCH',
-    authorization: 'Token token=' + store.userToken,
+    headers: {
+      Authorization: 'Token token=' + store.userToken
+    },
+    data
+  })
+}
+
+const signOut = function (data) {
+  console.log('this is store at signout ajax: ', store)
+  return $.ajax({
+    url: config.apiOrigin + '/sign-out/' + store.id,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.userToken
+    },
     data
   })
 }
@@ -42,5 +55,6 @@ const changePassword = function (data) {
 module.exports = {
   signUp,
   signIn,
-  changePassword
+  changePassword,
+  signOut
 }
