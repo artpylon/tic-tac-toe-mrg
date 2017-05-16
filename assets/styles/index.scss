@@ -26,10 +26,6 @@ body {
   text-align: center;
 }
 
-.signInModal {
-  color: black;
-  font-size: 30px;
-}
 #change-password {
   display: none;
 }
@@ -38,4 +34,23 @@ body {
 }
 #changepwbutton {
   display: none;
+}
+form {
+  margin-bottom: 20px;
+}
+legend {
+  background-color: $background-color;
+  color: $font-color;
+}
+.button {
+  background-color: $font-color;
+  color: $background-color;
+}
+#changepwbutton {
+  background-color: white;
+  color: black;
+}
+#changepwbutton {
+  background-color: white;
+  color: black;
 }
