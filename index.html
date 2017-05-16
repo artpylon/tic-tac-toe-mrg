@@ -12,15 +12,9 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
-      <h1>Example</h1>
+      <h1>Tic-Tac-Toe Game</h1>
 
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-      minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-      ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.</p>
+      <p>Sweet game! You're playin' it. Hellz ya, tic tac toe'n fo sho.</p>
 
       <form id="sign-up">
         <fieldset>
@@ -53,38 +47,54 @@
         </fieldset>
       </form>
 
+      <button id="changepwbutton">Change Password</button>
+
+      <form id="change-password">
+        <fieldset>
+          <legend>Change your password!</legend>
+
+          <label>New password</label>
+          <input type="password" name="[passwords][new]" placeholder="New password">
+
+          <label>Old password</label>
+          <input type="password" name="[passwords][old]" placeholder="Old password">
+
+          <input type="submit" name="submit" value="Change password!">
+        </fieldset>
+      </form>
+
       <div class="tic">
-        <div class="col-xs-4 col-md-4 box">
-          <input type="text" class="tile 0" placeholder="0">
+        <div class="col-xs-4 col-md-4 box" id="zero">
+          <p class="tic"></p>
         </div>
-        <div class="col-xs-4 col-md-4 box">
+        <div class="col-xs-4 col-md-4 box" id="one">
           <p class="tic">X</p>
         </div>
-        <div class="col-xs-4 col-md-4 box">
+        <div class="col-xs-4 col-md-4 box" id="two">
           <p class="tic">X</p>
         </div>
       </div>
 
       <div class="tic">
-        <div class="col-xs-4 col-md-4 box">
+        <div class="col-xs-4 col-md-4 box 3">
           <p class="tic">X</p>
         </div>
-        <div class="col-xs-4 col-md-4 box">
+        <div class="col-xs-4 col-md-4 box 4">
           <p class="tic">X</p>
         </div>
-        <div class="col-xs-4 col-md-4 box">
+        <div class="col-xs-4 col-md-4 box 5">
           <p class="tic">X</p>
         </div>
       </div>
 
       <div class="tic">
-        <div class="col-xs-4 col-md-4 box">
+        <div class="col-xs-4 col-md-4 box 6">
           <p class="tic">X</p>
         </div>
-        <div class="col-xs-4 col-md-4 box">
+        <div class="col-xs-4 col-md-4 box 7">
           <p class="tic">X</p>
         </div>
-        <div class="col-xs-4 col-md-4 box">
+        <div class="col-xs-4 col-md-4 box 8">
           <p class="tic">X</p>
         </div>
 
