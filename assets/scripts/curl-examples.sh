@@ -58,12 +58,10 @@ curl "http://tic-tac-toe.wdibos.com/games/279" \
 --header "Authorization: Token token=BAhJIiU1ZThmNThiOWJiNjU5ODU1ZTIyYTVhMWZkNzg3NWQzZgY6BkVG--d91ed74650e3094e40eddd0d1687c036115160e6" \
 --data '{"game": {"cell": {"index": 0, "value": "x"}, "over": false}}'
 
-const updateGame = function (data) {
-  return $.ajax({
-    url: config.apiOrigin + '/games/' + store.game.id,
-    method: 'PATCH',
-    headers: {
-      Authorization: 'Token token=' + store.userToken
-    },
-    data: '{"game": {"cell": {"index": store.game.cell.index, "value": "store.game.cell.value"}, "over": false}}'
-  })
+#get all games
+curl "http://tic-tac-toe.wdibos.com/games?over=true" \
+--include \
+--request GET \
+--header "Content-Type: application/json" \
+--header "Authorization: Token token=BAhJIiU5ZmY4Y2I1ZWYzZDE4MjRiY2IzMWE4NTMxYjU2YTNhOAY6BkVG--03545628bf03ff2bd79a5c8d59b2a92c0251b8ee" \
+--data '{}'

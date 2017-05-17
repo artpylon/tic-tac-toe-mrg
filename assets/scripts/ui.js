@@ -1,6 +1,7 @@
 'use strict'
 const api = require('./api')
 const events = require('./events')
+const store = require('./store')
 
 // Authentication
 const signUpSuccess = (data) => {
@@ -57,6 +58,12 @@ const startGameSuccess = (data) => {
 const startGameFailure = (error) => {
 }
 
+const selectTileSuccess = () => {
+}
+
+const selectTileFailure = (error) => {
+}
+
 module.exports = {
   // Authentication
   signUpSuccess,
@@ -69,5 +76,7 @@ module.exports = {
   signOutFailure,
   // Game
   startGameSuccess,
-  startGameFailure
+  startGameFailure,
+  selectTileSuccess,
+  selectTileFailure
 }
