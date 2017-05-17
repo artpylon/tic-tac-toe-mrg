@@ -54,24 +54,58 @@ const onStartGame = function (event) {
   api.startGame(data)
     .then(ui.startGameSuccess)
     .catch(ui.startGameFailure)
+  // store.game.over = false
+}
+
+const isGameOver = function () {
+  if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'xxx' || store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'xxx' || store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'xxx' || store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'xxx' || store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'xxx' || store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'xxx' || store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'xxx' || store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'xxx' || store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.moves > 8) {
+    store.game.over = true
+    return true
+  } else { store.game.over = false }
 }
 
 const onSelectTile = function (event) {
-  console.log('this is the tile event ', event)
-  console.log('this is the store at select tile ', store)
+  console.log('this is the tile event data id', this.dataset.id)
   event.preventDefault()
-  const data = getFormFields(event.target)
-  store.game.cell.index = event.target.dataid
+  // const data = getFormFields(event.target)
+  store.game.cell = {}
+  store.game.cell.index = this.dataset.id
+  console.log(store.game.cell.index)
   turn()
-  const checkGame = function () {
-    if (isGameOver() === true) {
-      // end the game..
-    } else // update the game
-  api.updateGame(data)
-    .then(ui.selectTileSuccess)
-    .catch(ui.selectTileFailure)
+  isGameOver()
+  store.moves++
+  console.log('this is store before update game call ', store)
+  displayGameResult()
+  // api.updateGame(data)
+  //   .then(ui.selectTileSuccess)
+  //   .catch(ui.selectTileFailure)
   store.xTurn = !store.xTurn
-  console.log(store.xTurn)
+  console.log('player x turn ', store.xTurn)
+  console.log('moves ', store.moves)
 }
 
 const turn = function () {
@@ -80,39 +114,21 @@ const turn = function () {
   } else store.game.cell.value = 'o'
 }
 
-const isGameOver = function () {
-  if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'xxx' || 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'xxx' || 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'xxx' || 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[9] === 'xxx' || 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'xxx' || 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[9] === 'xxx' || 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'xxx' || 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'xxx' || 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[9] === 'xxx' || 'ooo') {
-    store.game.over = true
-    return true
-  } else return false
+const displayGameResult = function (data, isGameOver) {
+  if (isGameOver === false) {
+    api.updateGame(data)
+      .then(ui.selectTileSuccess)
+      .catch(ui.selectTileFailure)
+  } else {
+    api.updateGame(data)
+      .then(ui.endGameSuccess)
+      .catch(ui.selectTileFailure)
+  }
 }
 
 const addHandlers = () => {
   // Authentication
+  $('#zero').data('id', 0)
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
@@ -120,7 +136,15 @@ const addHandlers = () => {
   $('#changepwbutton').on('click', showChangePassword)
   // Game
   $('.startgame').on('click', onStartGame)
-  $('.tile').on('click', onSelectTile)
+  $('#zero').on('click', onSelectTile)
+  $('#one').on('click', onSelectTile)
+  $('#two').on('click', onSelectTile)
+  $('#three').on('click', onSelectTile)
+  $('#four').on('click', onSelectTile)
+  $('#five').on('click', onSelectTile)
+  $('#six').on('click', onSelectTile)
+  $('#seven').on('click', onSelectTile)
+  $('#eight').on('click', onSelectTile)
 }
 
 module.exports = {

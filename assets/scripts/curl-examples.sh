@@ -57,3 +57,13 @@ curl "http://tic-tac-toe.wdibos.com/games/279" \
 --header "Content-Type: application/json" \
 --header "Authorization: Token token=BAhJIiU1ZThmNThiOWJiNjU5ODU1ZTIyYTVhMWZkNzg3NWQzZgY6BkVG--d91ed74650e3094e40eddd0d1687c036115160e6" \
 --data '{"game": {"cell": {"index": 0, "value": "x"}, "over": false}}'
+
+const updateGame = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/games/' + store.game.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.userToken
+    },
+    data: '{"game": {"cell": {"index": store.game.cell.index, "value": "store.game.cell.value"}, "over": false}}'
+  })

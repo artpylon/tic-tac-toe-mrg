@@ -77,12 +77,12 @@ const startGame = function (data) {
 
 const updateGame = function (data) {
   return $.ajax({
-    url: config.apiOrigin + '/games' + store.game.id,
+    url: config.apiOrigin + '/games/' + store.game.id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.userToken
     },
-    data: '{"game": {"cell": {"index": store.game.id, "value": "store.game.value"}, "over": false}}'
+    data: {"game": {"cell": {"index": store.game.cell.index, "value": store.game.cell.value}}, "over": store.game.over}
   })
   .then((response) => {
     console.log('This is the response after update game: ', response)
