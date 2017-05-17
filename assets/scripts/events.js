@@ -101,11 +101,10 @@ const onSelectTile = function (event) {
   store.moves++
   $(this).text(store.game.cell.value)
   $(this).off()
-  isGameOver()
-  displayGameResult(data)
-  // api.updateGame(data)
-  //   .then(ui.selectTileSuccess)
-  //   .catch(ui.selectTileFailure)
+  // displayGameResult(data)
+  api.updateGame(data)
+    .then(ui.selectTileSuccess)
+    .catch(ui.selectTileFailure)
   isGameOver()
   store.xTurn = !store.xTurn
   console.log('player x turn ', store.xTurn)
@@ -116,34 +115,35 @@ const onSelectTile = function (event) {
 }
 
 const isGameOver = function () {
-  if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'xxx' || store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'xxx' || store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'xxx' || store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'xxx' || store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'xxx' || store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'xxx' || store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'xxx' || store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'xxx' || store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'ooo') {
-    store.game.over = true
-    return true
-  } else if (store.moves > 8) {
-    store.game.over = true
-    return true
-  } else { store.game.over = false }
+  console.log('im inside isGameOVer')
+  // if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'xxx' || store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'ooo') {
+  //   store.game.over = true
+  //   return true
+  // } else if (store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'xxx' || store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'ooo') {
+  //   store.game.over = true
+  //   return true
+  // } else if (store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'xxx' || store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'ooo') {
+  //   store.game.over = true
+  //   return true
+  // } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'xxx' || store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'ooo') {
+  //   store.game.over = true
+  //   return true
+  // } else if (store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'xxx' || store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'ooo') {
+  //   store.game.over = true
+  //   return true
+  // } else if (store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'xxx' || store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'ooo') {
+  //   store.game.over = true
+  //   return true
+  // } else if (store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'xxx' || store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'ooo') {
+  //   store.game.over = true
+  //   return true
+  // } else if (store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'xxx' || store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'ooo') {
+  //   store.game.over = true
+  //   return true
+  // } else if (store.moves > 8) {
+  //   store.game.over = true
+  //   return true
+  // } else { store.game.over = false }
 }
 
 const turn = function () {
@@ -152,17 +152,17 @@ const turn = function () {
   } else store.game.cell.value = 'o'
 }
 
-const displayGameResult = function (data) {
-  if (store.game.over === false) {
-    api.updateGame(data)
-      .then(ui.selectTileSuccess)
-      .catch(ui.selectTileFailure)
-  } else {
-    api.updateGame(data)
-      .then(ui.endGameSuccess)
-      .catch(ui.endGameFailure)
-  }
-}
+// const displayGameResult = function (data) {
+//   if (store.game.over === false) {
+//     api.updateGame(data)
+//       .then(ui.selectTileSuccess)
+//       .catch(ui.selectTileFailure)
+//   } else {
+//     api.updateGame(data)
+//       .then(ui.endGameSuccess)
+//       .catch(ui.endGameFailure)
+//   }
+// }
 
 const addHandlers = () => {
   // Authentication
