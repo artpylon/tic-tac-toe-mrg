@@ -5,6 +5,7 @@ const getFormFields = require(`../../lib/get-form-fields`)
 const api = require('./api')
 const ui = require('./ui')
 const events = require('./events')
+const store = require('./store')
 
 // Authentication
 const onSignUp = function (event) {
@@ -57,11 +58,23 @@ const onStartGame = function (event) {
 }
 
 const onSelectTile = function (event) {
+  console.log('this is the tile event ', event)
+  console.log('this is the store at select tile ', store)
   event.preventDefault()
   const data = getFormFields(event.target)
+  store.game.cell.index = event.target.dataid
+  turn()
   api.updateGame(data)
     .then(ui.selectTileSuccess)
     .catch(ui.selectTileFailure)
+  store.xTurn = !store.xTurn
+  console.log(store.xTurn)
+}
+
+const turn = function () {
+  if (store.xTurn === true) {
+    store.game.cell.value = 'x'
+  } else store.game.cell.value = 'o'
 }
 
 const addHandlers = () => {

@@ -19,6 +19,7 @@ const signInSuccess = (data) => {
   $('.errormsg').hide()
   $('.signout-button').show()
   $('#changepwbutton').show()
+  $('.startgame').show()
 }
 const signInFailure = (error) => {
   $('.errormsg').hide()
@@ -50,7 +51,9 @@ const signOutFailure = (error) => {
 
 // Game
 const startGameSuccess = (data) => {
+  $('.startgame').hide()
 }
+
 const startGameFailure = (error) => {
 }
 

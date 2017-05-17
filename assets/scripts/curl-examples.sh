@@ -42,10 +42,18 @@ curl "http://tic-tac-toe.wdibos.com/change-password/46" \
 
 # data output from curl doesn't have a trailing newline
 echo
-
+#create game
 curl "http://tic-tac-toe.wdibos.com/games" \
 --include \
 --request POST \
 --header "Content-Type: application/json" \
---header "Authorization: Token token=BAhJIiViNThlZGQxY2I0YjYyZDdiOWMzMTVhNmY3Nzc5OWJkNQY6BkVG--e3f254220158a1baf5ed0eafe69edf2661563086" \
+--header "Authorization: Token token=BAhJIiU1ZThmNThiOWJiNjU5ODU1ZTIyYTVhMWZkNzg3NWQzZgY6BkVG--d91ed74650e3094e40eddd0d1687c036115160e6" \
 --data '{}'
+
+#update game
+curl "http://tic-tac-toe.wdibos.com/games/279" \
+--include \
+--request PATCH \
+--header "Content-Type: application/json" \
+--header "Authorization: Token token=BAhJIiU1ZThmNThiOWJiNjU5ODU1ZTIyYTVhMWZkNzg3NWQzZgY6BkVG--d91ed74650e3094e40eddd0d1687c036115160e6" \
+--data '{"game": {"cell": {"index": 0, "value": "x"}, "over": false}}'
