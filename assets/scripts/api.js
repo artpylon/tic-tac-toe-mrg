@@ -85,11 +85,10 @@ const updateGame = function (data) {
     data: '{"game": {"cell": {"index": store.game.id, "value": "store.game.value"}, "over": false}}'
   })
   .then((response) => {
-    console.log('This is the response when starting a game: ', response)
+    console.log('This is the response after update game: ', response)
     store.game = response.game
     store.player_o = response.player_o
-    store.over = response.over
-    console.log('This is the store when starting a game: ', store)
+    console.log('This is the store after update game: ', store)
   })
 }
 

@@ -4,7 +4,6 @@ const getFormFields = require(`../../lib/get-form-fields`)
 
 const api = require('./api')
 const ui = require('./ui')
-const events = require('./events')
 const store = require('./store')
 
 // Authentication
@@ -64,6 +63,10 @@ const onSelectTile = function (event) {
   const data = getFormFields(event.target)
   store.game.cell.index = event.target.dataid
   turn()
+  const checkGame = function () {
+    if (isGameOver() === true) {
+      // end the game..
+    } else // update the game
   api.updateGame(data)
     .then(ui.selectTileSuccess)
     .catch(ui.selectTileFailure)
@@ -75,6 +78,37 @@ const turn = function () {
   if (store.xTurn === true) {
     store.game.cell.value = 'x'
   } else store.game.cell.value = 'o'
+}
+
+const isGameOver = function () {
+  if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'xxx' || 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'xxx' || 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'xxx' || 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[9] === 'xxx' || 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'xxx' || 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[9] === 'xxx' || 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'xxx' || 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'xxx' || 'ooo') {
+    store.game.over = true
+    return true
+  } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[9] === 'xxx' || 'ooo') {
+    store.game.over = true
+    return true
+  } else return false
 }
 
 const addHandlers = () => {
