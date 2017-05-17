@@ -6,7 +6,7 @@ curl "http://tic-tac-toe.wdibos.com/sign-in" \
   --header "Content-Type: application/json" \
   --data '{
     "credentials": {
-    "email": "matthewgray88@gmail.com",
+    "email": "b@b.com",
     "password": "secret"}
   }'
 
@@ -18,7 +18,7 @@ curl "http://tic-tac-toe.wdibos.com/sign-up" \
   --header "Content-Type: application/json" \
   --data '{
     "credentials": {
-    "email": "m88@gmail.com",
+    "email": "b@b.com",
     "password": "secret",
     "password_confirmation": "secret"}
   }'
@@ -42,3 +42,10 @@ curl "http://tic-tac-toe.wdibos.com/change-password/46" \
 
 # data output from curl doesn't have a trailing newline
 echo
+
+curl "http://tic-tac-toe.wdibos.com/games" \
+--include \
+--request POST \
+--header "Content-Type: application/json" \
+--header "Authorization: Token token=BAhJIiViNThlZGQxY2I0YjYyZDdiOWMzMTVhNmY3Nzc5OWJkNQY6BkVG--e3f254220158a1baf5ed0eafe69edf2661563086" \
+--data '{}'

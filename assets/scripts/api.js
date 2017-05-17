@@ -3,6 +3,7 @@
 const config = require('./config')
 const store = require('./store')
 
+// Authentication
 const signUp = function (data) {
   return $.ajax({
     url: config.apiOrigin + '/sign-up',
@@ -28,7 +29,6 @@ const signIn = function (data) {
     console.log('This is the response when logging in: ', response)
     store.userToken = response.user.token
     store.id = response.user.id
-    store.statusText = response.statusText
   })
 }
 
@@ -56,9 +56,28 @@ const signOut = function (data) {
   })
 }
 
+// Game
+const startGame = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/games',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + store.userToken
+    },
+    data: '{}'
+  })
+  .then((response) => {
+    console.log('This is the response when starting a game: ', response)
+    store.game = response.game
+    store.player_o = response.player_o
+    store.over = response.over
+    console.log('This is the store when starting a game: ', store)
+  })
+}
 module.exports = {
   signUp,
   signIn,
   changePassword,
-  signOut
+  signOut,
+  startGame
 }

@@ -12,10 +12,12 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="container-fluid">
+<!-- Header -->
       <h1>Tic-Tac-Toe Game</h1>
 
       <section>Sweet game! You're playin' it. Hellz ya, tic tac toe'n fo sho.</section>
 
+<!-- Sign Up Form -->
       <form id="sign-up">
         <fieldset>
           <legend>Sign up!</legend>
@@ -33,6 +35,7 @@
         </fieldset>
       </form>
 
+<!-- Sign In Form -->
       <form id="sign-in">
         <fieldset>
           <legend>Sign in!</legend>
@@ -47,6 +50,7 @@
         </fieldset>
       </form>
 
+<!-- Change Password Form -->
       <button id="changepwbutton">Change Password</button>
 
       <form id="change-password">
@@ -66,14 +70,16 @@
       <p class="changepw-success"></p>
       <button class="signout-button">Sign Out</button>
 
+<!-- Gameboard -->
+      <button class="startgame">Start Game</button>
       <div class="tic">
-        <div class="col-xs-4 col-md-4 box" id="zero">
+        <div class="col-xs-4 col-md-4 box tile">
           <section class="tic"></section>
         </div>
-        <div class="col-xs-4 col-md-4 box" id="one">
+        <div class="col-xs-4 col-md-4 box tile" id="one">
           <section class="tic">X</section>
         </div>
-        <div class="col-xs-4 col-md-4 box" id="two">
+        <div class="col-xs-4 col-md-4 box tile" id="two">
           <section class="tic">X</section>
         </div>
       </div>

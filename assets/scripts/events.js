@@ -6,7 +6,7 @@ const api = require('./api')
 const ui = require('./ui')
 const events = require('./events')
 
-// event.target must be a form
+// Authentication
 const onSignUp = function (event) {
   // prefer 'event.target' over 'this'
   // ALWAYS
@@ -46,22 +46,34 @@ const onSignOut = function (event) {
 const showChangePassword = function (event) {
   $('#change-password').show()
 }
-// const onSelectTile = function (event) {
-//   event.preventDefault()
-//   const data = getFormFields(event.target)
-//   api.changePassword(data)
-//     .then(ui.selectTileSuccess)
-//     .catch(ui.selectTileFailure)
-// }
+
+// Game
+const onStartGame = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  api.startGame(data)
+    .then(ui.startGameSuccess)
+    .catch(ui.startGameFailure)
+}
+
+const onSelectTile = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  api.updateGame(data)
+    .then(ui.selectTileSuccess)
+    .catch(ui.selectTileFailure)
+}
 
 const addHandlers = () => {
-  // 'on ' calls the callback and passes the browser 'event' as the first argument
+  // Authentication
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
-  // $('#zero').on('click', onSelectTile)
   $('.signout-button').on('click', onSignOut)
   $('#changepwbutton').on('click', showChangePassword)
+  // Game
+  $('.startgame').on('click', onStartGame)
+  $('.tile').on('click', onSelectTile)
 }
 
 module.exports = {

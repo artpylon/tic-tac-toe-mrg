@@ -2,6 +2,7 @@
 const api = require('./api')
 const events = require('./events')
 
+// Authentication
 const signUpSuccess = (data) => {
   $('#sign-up').hide()
   $('.errormsg').hide()
@@ -47,7 +48,14 @@ const signOutSuccess = (data) => {
 const signOutFailure = (error) => {
 }
 
+// Game
+const startGameSuccess = (data) => {
+}
+const startGameFailure = (error) => {
+}
+
 module.exports = {
+  // Authentication
   signUpSuccess,
   signUpFailure,
   signInSuccess,
@@ -55,5 +63,8 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
+  // Game
+  startGameSuccess,
+  startGameFailure
 }
