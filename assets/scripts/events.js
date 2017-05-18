@@ -112,6 +112,7 @@ const resetBoard = function (event) {
   $('.restart').hide()
   $('.gameboard').show()
   $('#change-password').hide()
+  $('.speech').text('Black as midnight on a moonless night.')
   onRestartGame(event)
   api.getIndex()
     .then(ui.getStatsSuccess)

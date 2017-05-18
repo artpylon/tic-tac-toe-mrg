@@ -216,12 +216,15 @@ const gameOverUI = function () {
   if (whoWon === 'Nobody') {
     $('.gameboard').hide()
     $('.tie').show()
+    $('.speech').text('I have no idea where this will lead us, but I have a definite feeling it will be a place both wonderful and strange.')
   } else if (whoWon === 'o') {
     $('.gameboard').hide()
     $('.owin').show()
+    $('.speech').text('I have no idea where this will lead us, but I have a definite feeling it will be a place both wonderful and strange.')
   } else {
     $('.gameboard').hide()
     $('.xwin').show()
+    $('.speech').text('I have no idea where this will lead us, but I have a definite feeling it will be a place both wonderful and strange.')
   }
 }
 
