@@ -2,10 +2,10 @@
 const api = require('./api')
 const events = require('./events')
 const store = require('./store')
-// const storeValue = store.game.value
-// const storeMoves = store.moves
+let whoWon = ''
 
 // Authentication
+
 const signUpSuccess = (data) => {
   $('#sign-up').hide()
   $('.errormsg').hide()
@@ -77,31 +77,72 @@ const restartGameFailure = (error) => {
 }
 
 const isGameOver = function () {
-  if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'xxx' || store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'ooo') {
+  if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'xxx') {
+    whoWon = 'x'
     store.game.over = true
     return store.game.over
-  } else if (store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'xxx' || store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'ooo') {
+  } else if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'ooo') {
+    whoWon = 'o'
     store.game.over = true
     return store.game.over
-  } else if (store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'xxx' || store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'ooo') {
+  } else if (store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'xxx') {
+    whoWon = 'x'
     store.game.over = true
     return store.game.over
-  } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'xxx' || store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'ooo') {
+  } else if (store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'ooo') {
+    whoWon = 'o'
     store.game.over = true
     return store.game.over
-  } else if (store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'xxx' || store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'ooo') {
+  } else if (store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'xxx') {
+    whoWon = 'x'
     store.game.over = true
     return store.game.over
-  } else if (store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'xxx' || store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'ooo') {
+  } else if (store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'ooo') {
+    whoWon = 'o'
     store.game.over = true
     return store.game.over
-  } else if (store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'xxx' || store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'ooo') {
+  } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'xxx') {
+    whoWon = 'x'
     store.game.over = true
     return store.game.over
-  } else if (store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'xxx' || store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'ooo') {
+  } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'ooo') {
+    whoWon = 'o'
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'xxx') {
+    whoWon = 'x'
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'ooo') {
+    whoWon = 'o'
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'xxx') {
+    whoWon = 'x'
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'ooo') {
+    whoWon = 'o'
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'xxx') {
+    whoWon = 'x'
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'ooo') {
+    whoWon = 'o'
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'xxx') {
+    whoWon = 'x'
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'ooo') {
+    whoWon = 'o'
     store.game.over = true
     return store.game.over
   } else if (store.moves > 8) {
+    whoWon = 'Nobody'
     store.game.over = true
     return store.game.over
   } else { store.game.over = false }
@@ -128,11 +169,11 @@ const gameOverUI = function () {
   console.log('store.game.value is ', store.game.value)
   console.log('value is ', store.game.cell.value)
   console.log('moves is ', store.moves)
-  if (store.moves > 8) {
+  if (whoWon === 'Nobody') {
     $('.gameboard').hide()
     $('.tie').show()
     console.log('gameOverUI thinks no one won')
-  } else if (store.game.cell.value === 'o') {
+  } else if (whoWon === 'o') {
     $('.gameboard').hide()
     $('.owin').show()
     console.log('gameOverUI thinks o won')
