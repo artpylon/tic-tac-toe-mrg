@@ -11,11 +11,9 @@ const signUp = function (data) {
     data
   })
     .then((response) => {
-      console.log('this is response', response)
       store.userToken = response.user.token
       store.statusText = response.statusText
       store.id = response.id
-      console.log('this is store: ', store)
     })
 }
 
@@ -26,14 +24,12 @@ const signIn = function (data) {
     data
   })
   .then((response) => {
-    console.log('This is the response when logging in: ', response)
     store.userToken = response.user.token
     store.id = response.user.id
   })
 }
 
 const changePassword = function (data) {
-  console.log('this is store at change-password ajax: ', store)
   return $.ajax({
     url: config.apiOrigin + '/change-password/' + store.id,
     method: 'PATCH',
@@ -45,7 +41,6 @@ const changePassword = function (data) {
 }
 
 const signOut = function (data) {
-  console.log('this is store at signout ajax: ', store)
   return $.ajax({
     url: config.apiOrigin + '/sign-out/' + store.id,
     method: 'DELETE',
@@ -74,7 +69,6 @@ const startGame = function (data) {
 }
 
 const updateGame = function () {
-  console.log('inside update game store.game.over is ', store.game.over)
   return $.ajax({
     url: config.apiOrigin + '/games/' + store.game.id,
     method: 'PATCH',
@@ -89,7 +83,6 @@ const updateGame = function () {
 }
 
 const getIndex = function (data) {
-  console.log('store before getIndex ', store)
   return $.ajax({
     url: config.apiOrigin + '/games',
     method: 'GET',
@@ -98,10 +91,8 @@ const getIndex = function (data) {
     }
   })
   .then((response) => {
-    console.log('response.games after index call ', response.games)
     store.games = response.games
     $('.played').text(store.games.length)
-    console.log('store.games after index call ', store.games)
   })
 }
 

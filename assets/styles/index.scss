@@ -9,7 +9,48 @@ body {
   background-color: $background-color;
   color: $font-color;
 }
-
+// header {
+//   float: left;
+// }
+.horizontalrule {
+  background-color: $background-color;
+  border: 1px solid $white;
+  // float: left;
+}
+.speechbubble {
+  position:relative;
+  padding:15px;
+  margin:1em 0 3em;
+  border:5px solid #5a8f00;
+  color:#333;
+  background:#fff;
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+  margin-right:30px;
+  float: right;
+  // clear: left;
+  width: 300px;
+  height: 200px;
+}
+.speech {
+  font-size: 16px;
+}
+.cooper {
+  float: right;
+  width: 300px;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+.authforms {
+  clear: both;
+}
+.errormsg {
+  clear: both;
+}
+.gameboard {
+  clear: both;
+}
 .box {
   border: 1px solid $white;
 }

@@ -16,6 +16,7 @@ let whoWon = ''
 const signUpSuccess = (data) => {
   $('#sign-up').hide()
   $('.errormsg').hide()
+  $('.speech').text('Im just going to enjoy my breakfast while you play')
 }
 const signUpFailure = (error) => {
   $('.errormsg').hide()
@@ -31,6 +32,7 @@ const signInSuccess = (data) => {
   $('#changepwbutton').show()
   $('.startgame').show()
   $('.userstats').show()
+  $('.speech').text('I only have time for coffee.')
   api.getIndex()
     .then(getStatsSuccess)
     .catch(getStatsFailure)
@@ -44,8 +46,9 @@ const signInFailure = (error) => {
 
 const changePasswordSuccess = (data) => {
   $('.errormsg').hide()
-  $('.errormsg').text('Password changed.')
+  $('.changepwmsg').text('Password changed.')
   $('.errormsg').show()
+  $('.speech').text('last night I dreamed I was eating a large, tasteless gumdrop, and awoke to discover I was chewing on one of my foam disposable earplugs. Perhaps I should consider moderating my nighttime coffee consumption.')
   $('#change-password').hide()
   $('#changepwbutton').show()
 }
@@ -65,6 +68,7 @@ const signOutSuccess = (data) => {
   $('.xwin').hide()
   $('.owin').hide()
   $('.tie').hide()
+  $('.changepwmsg').hide()
   $('#sign-up').show()
   $('#sign-in').show()
   $('.gameboard').show()
@@ -88,6 +92,8 @@ const signOutFailure = (error) => {
 const startGameSuccess = (data) => {
   $('.startgame').hide()
   $('.errormsg').hide()
+  $('.changepwmsg').hide()
+  $('.speech').text('You know, this is – excuse me – a damn fine cup of coffee.')
   api.getIndex()
     .then(getStatsSuccess)
     .catch(getStatsFailure)
@@ -102,6 +108,7 @@ const startGameFailure = (error) => {
 const restartGameSuccess = (data) => {
   $('.startgame').hide()
   $('.errormsg').hide()
+  $('.speech').text('This must be where pies go when they die.')
   api.getIndex()
     .then(getStatsSuccess)
     .catch(getStatsFailure)
@@ -209,19 +216,17 @@ const gameOverUI = function () {
   if (whoWon === 'Nobody') {
     $('.gameboard').hide()
     $('.tie').show()
-    console.log('gameOverUI thinks no one won')
   } else if (whoWon === 'o') {
     $('.gameboard').hide()
     $('.owin').show()
-    console.log('gameOverUI thinks o won')
   } else {
     $('.gameboard').hide()
     $('.xwin').show()
-    console.log('gameOverUI thinks x won')
   }
 }
 
 const selectTileSuccess = () => {
+  $('.speech').text('Nothing beats the taste sensation when maple syrup collides with ham.')
   isGameOver()
   gameOver()
 }
