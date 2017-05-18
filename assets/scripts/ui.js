@@ -46,6 +46,7 @@ const changePasswordSuccess = (data) => {
   $('.errormsg').hide()
   $('.errormsg').text('Password changed.')
   $('.errormsg').show()
+  $('#change-password').hide()
   $('#changepwbutton').show()
 }
 const changePasswordFailure = (error) => {
