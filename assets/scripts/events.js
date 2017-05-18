@@ -7,14 +7,10 @@ const ui = require('./ui')
 const store = require('./store')
 // Authentication
 const onSignUp = function (event) {
-  // prefer 'event.target' over 'this'
-  // ALWAYS
   event.preventDefault()
   const data = getFormFields(event.target)
-// initiates an HTTP request that was defined in the api module as "signUp"
-  api.signUp(data) // passing credentials to the ajax call
-    .then(ui.signUpSuccess) // using a Promise to ensure order of execution
-    // .then(signIn) - so you dont have two steps, create account and then signIn
+  api.signUp(data)
+    .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
 }
 
@@ -24,9 +20,17 @@ const onSignIn = function (event) {
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
-    // .then(api.getGames(data))
-    // .then(ui.getGamesSuccess)
-    // .catch(ui.getGamesFailure)
+  api.index(data)
+    .then(ui.getStatsSuccess)
+    .catch(ui.getStatsFailure)
+}
+
+const getStats = function () {
+  event.preventDefault()
+  // const data = getFormFields(event.target)
+  api.index()
+    .then(ui.getStatsSuccess)
+    .catch(ui.getStatsFailure)
 }
 
 const onChangePassword = function (event) {
@@ -135,19 +139,11 @@ const addHandlers = () => {
   $('#changepwbutton').on('click', showChangePassword)
   // Game
   $('.startgame').on('click', onStartGame)
-  // $('#zero').on('click', onSelectTile)
-  // $('#one').on('click', onSelectTile)
-  // $('#two').on('click', onSelectTile)
-  // $('#three').on('click', onSelectTile)
-  // $('#four').on('click', onSelectTile)
-  // $('#five').on('click', onSelectTile)
-  // $('#six').on('click', onSelectTile)
-  // $('#seven').on('click', onSelectTile)
-  // $('#eight').on('click', onSelectTile)
   $('.restart').on('click', resetBoard)
 }
 
 module.exports = {
   addHandlers,
-  onSelectTile
+  onSelectTile,
+  getStats
 }

@@ -23,7 +23,12 @@ const signInSuccess = (data) => {
   $('.signout-button').show()
   $('#changepwbutton').show()
   $('.startgame').show()
+  $('.userstats').show()
+  api.index(data)
+    .then(getStatsSuccess)
+    .catch(getStatsFailure)
 }
+
 const signInFailure = (error) => {
   $('.errormsg').hide()
   $('#sign-in').after('<p>Sign in failed. Please check your email and password.</p>')
@@ -195,6 +200,11 @@ const selectTileFailure = (error) => {
   $('p').addClass('errormsg')
 }
 
+const getStatsSuccess = (data) => {
+}
+const getStatsFailure = (error) => {
+}
+
 module.exports = {
   // Authentication
   signUpSuccess,
@@ -210,5 +220,7 @@ module.exports = {
   startGameFailure,
   selectTileSuccess,
   selectTileFailure,
-  gameOverUI
+  gameOverUI,
+  getStatsSuccess,
+  getStatsFailure
 }

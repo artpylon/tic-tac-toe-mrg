@@ -63,5 +63,5 @@ curl "http://tic-tac-toe.wdibos.com/games?over=true" \
 --include \
 --request GET \
 --header "Content-Type: application/json" \
---header "Authorization: Token token=BAhJIiU5ZmY4Y2I1ZWYzZDE4MjRiY2IzMWE4NTMxYjU2YTNhOAY6BkVG--03545628bf03ff2bd79a5c8d59b2a92c0251b8ee" \
+--header "Authorization: Token token=BAhJIiU5YjI4NDI1ODBkNzFhNWJiNGU4ODNmMjBiNmZiOWQ0YgY6BkVG--8b41d36e534724d98c2ca1477d151b9432d74374" \
 --data '{}'

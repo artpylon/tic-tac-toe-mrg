@@ -3,6 +3,19 @@
 const config = require('./config')
 const store = require('./store')
 
+const index = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/games',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.userToken
+    }
+  }
+  .then((response) => {
+    store.games = response.games
+  })
+}
+
 // Authentication
 const signUp = function (data) {
   return $.ajax({
@@ -86,9 +99,6 @@ const updateGame = function (data) {
   })
   .then((response) => {
     store.game.cells = response.game.cells
-    // store.player_o = response.player_o
-    // store.over = response.over
-    // console.log('This is the store after update game: ', store)
   })
 }
 
@@ -98,5 +108,6 @@ module.exports = {
   changePassword,
   signOut,
   startGame,
-  updateGame
+  updateGame,
+  index
 }
