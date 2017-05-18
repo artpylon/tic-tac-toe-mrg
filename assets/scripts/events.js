@@ -23,6 +23,8 @@ const onSignIn = function (event) {
 }
 
 const onChangePassword = function (event) {
+  $('.changepwmsg').hide()
+  $('.errormsg').hide()
   event.preventDefault()
   const data = getFormFields(event.target)
   api.changePassword(data)
@@ -39,6 +41,7 @@ const onSignOut = function (event) {
 }
 
 const showChangePassword = function (event) {
+  $('.changepwmsg').hide()
   $('#change-password').show()
   $('#changepwbutton').hide()
 }
@@ -54,6 +57,7 @@ const onStartGame = function (event) {
   $('#six').on('click', onSelectTile)
   $('#seven').on('click', onSelectTile)
   $('#eight').on('click', onSelectTile)
+  $('#change-password').hide()
   $('.played').text(store.games.length)
   store.moves = 0
   store.xTurn = true
@@ -110,6 +114,7 @@ const resetBoard = function (event) {
   $('.owin').hide()
   $('.tie').hide()
   $('.restart').hide()
+  $('.changepwmsg').hide()
   $('.gameboard').show()
   $('#change-password').hide()
   $('.speech').text('Black as midnight on a moonless night.')

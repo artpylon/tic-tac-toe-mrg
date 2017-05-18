@@ -46,8 +46,7 @@ const signInFailure = (error) => {
 
 const changePasswordSuccess = (data) => {
   $('.errormsg').hide()
-  $('.changepwmsg').text('Password changed.')
-  $('.errormsg').show()
+  $('.changepwmsg').show()
   $('.speech').text('last night I dreamed I was eating a large, tasteless gumdrop, and awoke to discover I was chewing on one of my foam disposable earplugs. Perhaps I should consider moderating my nighttime coffee consumption.')
   $('#change-password').hide()
   $('#changepwbutton').show()
@@ -220,11 +219,11 @@ const gameOverUI = function () {
   } else if (whoWon === 'o') {
     $('.gameboard').hide()
     $('.owin').show()
-    $('.speech').text('I have no idea where this will lead us, but I have a definite feeling it will be a place both wonderful and strange.')
+    $('.speech').text('This must be where pies go when they die.')
   } else {
     $('.gameboard').hide()
     $('.xwin').show()
-    $('.speech').text('I have no idea where this will lead us, but I have a definite feeling it will be a place both wonderful and strange.')
+    $('.speech').text('Every day, once a day, give yourself a present.')
   }
 }
 
