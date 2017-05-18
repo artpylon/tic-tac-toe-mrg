@@ -50,6 +50,9 @@ const signOutSuccess = (data) => {
   $('#sign-in').show()
 }
 const signOutFailure = (error) => {
+  $('.errormsg').hide()
+  $('.signout-button').after('<p>Sign out failed. Please contact the webmaster.</p>')
+  $('p').addClass('errormsg')
 }
 
 // Game
@@ -58,6 +61,9 @@ const startGameSuccess = (data) => {
 }
 
 const startGameFailure = (error) => {
+  $('.errormsg').hide()
+  $('.startgame').after('<p>Start game failed. Please contact the webmaster.</p>')
+  $('p').addClass('errormsg')
 }
 
 const restartGameSuccess = (data) => {
@@ -65,6 +71,9 @@ const restartGameSuccess = (data) => {
 }
 
 const restartGameFailure = (error) => {
+  $('.errormsg').hide()
+  $('.restart').after('<p>Restart game failed. Please contact the webmaster.</p>')
+  $('p').addClass('errormsg')
 }
 
 const isGameOver = function () {
@@ -140,6 +149,9 @@ const selectTileSuccess = () => {
 }
 
 const selectTileFailure = (error) => {
+  $('.errormsg').hide()
+  $('.gameboard').after('<p>Select tile failed. Please contact the webmaster.</p>')
+  $('p').addClass('errormsg')
 }
 
 module.exports = {
