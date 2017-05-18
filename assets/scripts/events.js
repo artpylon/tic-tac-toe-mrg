@@ -63,6 +63,8 @@ const onStartGame = function (event) {
   store.xTurn = true
   event.preventDefault()
   const data = getFormFields(event.target)
+  store.gamesPlayed++
+  $('.played').text(store.gamesPlayed)
   api.startGame(data)
     .then(ui.startGameSuccess)
     .catch(ui.startGameFailure)
@@ -119,10 +121,12 @@ const resetBoard = function (event) {
   $('#change-password').hide()
   $('#changepwbutton').show()
   $('.speech').text('Black as midnight on a moonless night.')
+  store.gamesPlayed++
+  $('.played').text(store.gamesPlayed)
   onRestartGame(event)
-  api.getIndex()
-    .then(ui.getStatsSuccess)
-    .catch(ui.getStatsFailure)
+  // api.getIndex()
+  //   .then(ui.getStatsSuccess)
+  //   .catch(ui.getStatsFailure)
 }
 
 const addHandlers = () => {

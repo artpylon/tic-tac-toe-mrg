@@ -240,7 +240,7 @@ const selectTileFailure = (error) => {
 }
 
 const getStatsSuccess = (data) => {
-  $('.played').text(store.games.length)
+  // $('.played').text(store.games.length)
 }
 
 const getStatsFailure = (error) => {

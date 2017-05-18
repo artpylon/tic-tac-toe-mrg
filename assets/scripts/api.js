@@ -91,8 +91,10 @@ const getIndex = function (data) {
     }
   })
   .then((response) => {
+    store.gamesPlayed = response.games.length
+    $('.played').text(response.games.length)
     store.games = response.games
-    $('.played').text(store.games.length)
+    // $('.played').text(store.games.length)
   })
 }
 
