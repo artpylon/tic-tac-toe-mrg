@@ -40,6 +40,7 @@ const onSignOut = function (event) {
 
 const showChangePassword = function (event) {
   $('#change-password').show()
+  $('#changepwbutton').hide()
 }
 
 // Game

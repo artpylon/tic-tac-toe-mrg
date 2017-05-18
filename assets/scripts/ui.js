@@ -20,6 +20,7 @@ const signUpSuccess = (data) => {
 const signUpFailure = (error) => {
   $('.errormsg').hide()
   $('.errormsg').text('Sign up failed. Please check your email and passwords.')
+  $('.errormsg').show()
 }
 
 const signInSuccess = (data) => {
@@ -38,16 +39,19 @@ const signInSuccess = (data) => {
 const signInFailure = (error) => {
   $('.errormsg').hide()
   $('.errormsg').text('Sign in failed. Please check your email and password.')
+  $('.errormsg').show()
 }
 
 const changePasswordSuccess = (data) => {
-  $('#change-password').hide()
   $('.errormsg').hide()
-  $('.changepw-success').text('Password has been changed.')
+  $('.errormsg').text('Password changed.')
+  $('.errormsg').show()
+  $('#changepwbutton').show()
 }
 const changePasswordFailure = (error) => {
   $('.errormsg').hide()
-  $('.errormsg').text('Change password failed. Please check your passwords.</p>')
+  $('.errormsg').text('Change password failed. Please check your passwords.')
+  $('.errormsg').show()
 }
 
 const signOutSuccess = (data) => {
@@ -75,13 +79,14 @@ const signOutSuccess = (data) => {
 }
 const signOutFailure = (error) => {
   $('.errormsg').hide()
-  $('.signout-button').after('<p>Sign out failed. Please contact the webmaster.</p>')
-  $('p').addClass('errormsg')
+  $('.errormsg').text('Sign out failed. Please contact the webmaster.')
+  $('.errormsg').show()
 }
 
 // Game
 const startGameSuccess = (data) => {
   $('.startgame').hide()
+  $('.errormsg').hide()
   api.getIndex()
     .then(getStatsSuccess)
     .catch(getStatsFailure)
@@ -89,12 +94,13 @@ const startGameSuccess = (data) => {
 
 const startGameFailure = (error) => {
   $('.errormsg').hide()
-  $('.startgame').after('<p>Start game failed. Please contact the webmaster.</p>')
-  $('p').addClass('errormsg')
+  $('.errormsg').text('Start game failed. Please contact the webmaster.')
+  $('.errormsg').show()
 }
 
 const restartGameSuccess = (data) => {
   $('.startgame').hide()
+  $('.errormsg').hide()
   api.getIndex()
     .then(getStatsSuccess)
     .catch(getStatsFailure)
@@ -102,8 +108,8 @@ const restartGameSuccess = (data) => {
 
 const restartGameFailure = (error) => {
   $('.errormsg').hide()
-  $('.restart').after('<p>Restart game failed. Please contact the webmaster.</p>')
-  $('p').addClass('errormsg')
+  $('.errormsg').text('Restart game failed. Please contact the webmaster.')
+  $('.errormsg').show()
 }
 
 const isGameOver = function () {
@@ -199,9 +205,6 @@ const gameOver = function () {
 
 // edge case, someone wins by playing the 9th tile...
 const gameOverUI = function () {
-  console.log('store.game.value is ', store.game.value)
-  console.log('value is ', store.game.cell.value)
-  console.log('moves is ', store.moves)
   if (whoWon === 'Nobody') {
     $('.gameboard').hide()
     $('.tie').show()
@@ -224,19 +227,18 @@ const selectTileSuccess = () => {
 
 const selectTileFailure = (error) => {
   $('.errormsg').hide()
-  $('.gameboard').after('<p>Select tile failed. Please contact the webmaster.</p>')
-  $('p').addClass('errormsg')
+  $('.errormsg').text('Select tile failed. Please contact the webmaster.')
+  $('.errormsg').show()
 }
 
 const getStatsSuccess = (data) => {
-  console.log('store.games after index call ', store.games)
   $('.played').text(store.games.length)
 }
 
 const getStatsFailure = (error) => {
   $('.errormsg').hide()
-  $('.played').after('<p>Stats failed. Please contact the webmaster.</p>')
-  $('p').addClass('errormsg')
+  $('.errormsg').text('Stats failed. Please contact the webmaster.')
+  $('.errormsg').show()
 }
 
 module.exports = {

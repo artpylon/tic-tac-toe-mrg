@@ -77,9 +77,12 @@ legend {
   background-color: $font-color;
   color: $background-color;
 }
+.gamesplayed {
+  font-size: 20px;
+}
 .userstats {
   display: none;
 }
-.gamesplayed {
-  font-size: 20px;
+input, select, textarea {
+    color: black;
 }
