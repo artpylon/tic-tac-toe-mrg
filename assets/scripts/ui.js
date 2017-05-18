@@ -2,6 +2,7 @@
 const api = require('./api')
 const events = require('./events')
 const store = require('./store')
+const ui = require('./ui')
 let whoWon = ''
 
 // Authentication
@@ -24,7 +25,7 @@ const signInSuccess = (data) => {
   $('#changepwbutton').show()
   $('.startgame').show()
   $('.userstats').show()
-  api.index(data)
+  api.getIndex()
     .then(getStatsSuccess)
     .catch(getStatsFailure)
 }
@@ -63,6 +64,9 @@ const signOutFailure = (error) => {
 // Game
 const startGameSuccess = (data) => {
   $('.startgame').hide()
+  api.getIndex()
+    .then(getStatsSuccess)
+    .catch(getStatsFailure)
 }
 
 const startGameFailure = (error) => {
@@ -73,6 +77,9 @@ const startGameFailure = (error) => {
 
 const restartGameSuccess = (data) => {
   $('.startgame').hide()
+  api.getIndex()
+    .then(getStatsSuccess)
+    .catch(getStatsFailure)
 }
 
 const restartGameFailure = (error) => {
@@ -166,6 +173,9 @@ const gameOver = function () {
     $('#seven').off('click', events.onSelectTile)
     $('#eight').off('click', events.onSelectTile)
     gameOverUI()
+    api.updateGame()
+      .then(ui.updateGameSuccess)
+      .catch(ui.updateGameFailure)
   }
 }
 
@@ -201,6 +211,7 @@ const selectTileFailure = (error) => {
 }
 
 const getStatsSuccess = (data) => {
+  console.log('store.games after index call ', store.games)
 }
 const getStatsFailure = (error) => {
 }

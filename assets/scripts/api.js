@@ -3,19 +3,6 @@
 const config = require('./config')
 const store = require('./store')
 
-// const index = function (data) {
-//   return $.ajax({
-//     url: config.apiOrigin + '/games',
-//     method: 'GET',
-//     headers: {
-//       Authorization: 'Token token=' + store.userToken
-//     }
-//   }
-//   .then((response) => {
-//     store.games = response.games
-//   })
-// }
-
 // Authentication
 const signUp = function (data) {
   return $.ajax({
@@ -88,7 +75,8 @@ const startGame = function (data) {
   })
 }
 
-const updateGame = function (data) {
+const updateGame = function () {
+  console.log('inside update game store.game.over is ', store.game.over)
   return $.ajax({
     url: config.apiOrigin + '/games/' + store.game.id,
     method: 'PATCH',
@@ -102,6 +90,37 @@ const updateGame = function (data) {
   })
 }
 
+// const endGame = function () {
+//   console.log('endGame api store.game.over is ', store.game.over)
+//   return $.ajax({
+//     url: config.apiOrigin + '/games/' + store.game.id,
+//     method: 'PATCH',
+//     headers: {
+//       Authorization: 'Token token=' + store.userToken
+//     },
+//     data: {"game": {"cell": {"index": store.game.cell.index, "value": store.game.cell.value}}, "over": store.game.over}
+//   })
+  // .then((response) => {
+  //   store.game.cells = response.game.cells
+  // })
+// }
+
+const getIndex = function (data) {
+  console.log('store before getIndex ', store)
+  return $.ajax({
+    url: config.apiOrigin + '/games',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.userToken
+    }
+  })
+  .then((response) => {
+    console.log('response.games after index call ', response.games)
+    store.games = response.games
+    console.log('store.games after index call ', store.games)
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
@@ -109,5 +128,5 @@ module.exports = {
   signOut,
   startGame,
   updateGame,
-  index
+  getIndex
 }

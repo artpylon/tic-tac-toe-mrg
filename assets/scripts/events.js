@@ -20,17 +20,6 @@ const onSignIn = function (event) {
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
-  api.index(data)
-    .then(ui.getStatsSuccess)
-    .catch(ui.getStatsFailure)
-}
-
-const getStats = function () {
-  event.preventDefault()
-  // const data = getFormFields(event.target)
-  api.index()
-    .then(ui.getStatsSuccess)
-    .catch(ui.getStatsFailure)
 }
 
 const onChangePassword = function (event) {
@@ -144,6 +133,5 @@ const addHandlers = () => {
 
 module.exports = {
   addHandlers,
-  onSelectTile,
-  getStats
+  onSelectTile
 }
