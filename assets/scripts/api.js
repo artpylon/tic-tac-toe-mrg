@@ -3,18 +3,18 @@
 const config = require('./config')
 const store = require('./store')
 
-const index = function (data) {
-  return $.ajax({
-    url: config.apiOrigin + '/games',
-    method: 'GET',
-    headers: {
-      Authorization: 'Token token=' + store.userToken
-    }
-  }
-  .then((response) => {
-    store.games = response.games
-  })
-}
+// const index = function (data) {
+//   return $.ajax({
+//     url: config.apiOrigin + '/games',
+//     method: 'GET',
+//     headers: {
+//       Authorization: 'Token token=' + store.userToken
+//     }
+//   }
+//   .then((response) => {
+//     store.games = response.games
+//   })
+// }
 
 // Authentication
 const signUp = function (data) {
