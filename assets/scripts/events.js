@@ -5,7 +5,6 @@ const getFormFields = require(`../../lib/get-form-fields`)
 const api = require('./api')
 const ui = require('./ui')
 const store = require('./store')
-
 // Authentication
 const onSignUp = function (event) {
   // prefer 'event.target' over 'this'
@@ -52,6 +51,8 @@ const showChangePassword = function (event) {
 
 // Game
 const onStartGame = function (event) {
+  store.moves = 0
+  store.xTurn = true
   event.preventDefault()
   const data = getFormFields(event.target)
   api.startGame(data)
@@ -60,12 +61,15 @@ const onStartGame = function (event) {
 }
 
 const onSelectTile = function (event) {
+  console.log('onSelectTile store is ', store)
+  console.log('onSelectTile event ', event)
   event.preventDefault()
   const data = getFormFields(event.target)
   store.game.cell = {}
   store.game.cell.index = this.dataset.id
   turn()
   store.moves++
+  console.log('onSelectTile moves ', store.moves)
   $(this).text(store.game.cell.value)
   $(this).off()
   api.updateGame(data)
@@ -81,25 +85,33 @@ const turn = function () {
   } else store.game.cell.value = 'o'
 }
 
-// const displayGameResult = function (data) {
-//   if (store.game.over === false) {
-//     api.updateGame(data)
-//       .then(ui.selectTileSuccess)
-//       .catch(ui.selectTileFailure)
-//   } else {
-//     api.updateGame(data)
-//       .then(ui.endGameSuccess)
-//       .catch(ui.endGameFailure)
-//   }
-// }
-
-const gameOver = function () {
-  if (store.game.over === true) {
-    gameOverUI()
-  }
+const onRestartGame = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+  api.startGame(data)
+    .then(ui.restartGameSuccess)
+    .catch(ui.restartGameFailure)
 }
 
-const resetBoard = function () {
+const resetBoard = function (event) {
+  store.game = {}
+  store.moves = 0
+  console.log('resetBoard moves ', store.moves)
+  $('#zero').on('click', onSelectTile).text('')
+  $('#one').on('click', onSelectTile).text('')
+  $('#two').on('click', onSelectTile).text('')
+  $('#three').on('click', onSelectTile).text('')
+  $('#four').on('click', onSelectTile).text('')
+  $('#five').on('click', onSelectTile).text('')
+  $('#six').on('click', onSelectTile).text('')
+  $('#seven').on('click', onSelectTile).text('')
+  $('#eight').on('click', onSelectTile).text('')
+  $('.xwin').hide()
+  $('.owin').hide()
+  $('.tie').hide()
+  $('.restart').hide()
+  $('.gameboard').show()
+  onRestartGame(event)
 }
 
 const addHandlers = () => {
@@ -121,9 +133,10 @@ const addHandlers = () => {
   $('#six').on('click', onSelectTile)
   $('#seven').on('click', onSelectTile)
   $('#eight').on('click', onSelectTile)
-  $('.resetgame').on('click', resetBoard)
+  $('.restart').on('click', resetBoard)
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onSelectTile
 }

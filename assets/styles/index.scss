@@ -64,9 +64,16 @@ legend {
   color: $background-color;
   display: none;
 }
-.playagainscreen {
+.xwin {
   display: none;
 }
-.resetgame {
-  display: none
+.owin {
+  display: none;
+}
+.tie {
+  display: none;
+}
+.restart {
+  background-color: $font-color;
+  color: $background-color;
 }

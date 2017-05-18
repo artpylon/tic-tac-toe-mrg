@@ -2,6 +2,8 @@
 const api = require('./api')
 const events = require('./events')
 const store = require('./store')
+// const storeValue = store.game.value
+// const storeMoves = store.moves
 
 // Authentication
 const signUpSuccess = (data) => {
@@ -58,6 +60,27 @@ const startGameSuccess = (data) => {
 const startGameFailure = (error) => {
 }
 
+const restartGameSuccess = (data) => {
+  $('.startgame').hide()
+  // $('#zero').on('click', events.onSelectTile).text('')
+  // $('#one').on('click', events.onSelectTile).text('')
+  // $('#two').on('click', events.onSelectTile).text('')
+  // $('#three').on('click', events.onSelectTile).text('')
+  // $('#four').on('click', events.onSelectTile).text('')
+  // $('#five').on('click', events.onSelectTile).text('')
+  // $('#six').on('click', events.onSelectTile).text('')
+  // $('#seven').on('click', events.onSelectTile).text('')
+  // $('#eight').on('click', events.onSelectTile).text('')
+  // $('.xwin').hide()
+  // $('.owin').hide()
+  // $('.tie').hide()
+  // $('.restart').hide()
+  // $('.gameboard').show()
+}
+
+const restartGameFailure = (error) => {
+}
+
 const isGameOver = function () {
   if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'xxx' || store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'ooo') {
     store.game.over = true
@@ -90,28 +113,38 @@ const isGameOver = function () {
   return store.game.over
 }
 
-const selectTileSuccess = () => {
-  isGameOver()
-}
-
-const selectTileFailure = (error) => {
+const gameOver = function () {
+  if (store.game.over === true) {
+    gameOverUI()
+  }
 }
 
 // edge case, someone wins by playing the 9th tile...
 const gameOverUI = function () {
-  if (store.game.value === 'x') {
-    $('.gameboard').hide()
-    $('.xwin').show()
-    $('.resetgame').show()
-  } else if (store.game.value === 'o') {
-    $('.gameboard').hide()
-    $('.ywin').show()
-    $('.resetgame').show()
-  } else {
+  console.log('store.game.value is ', store.game.value)
+  console.log('value is ', store.game.cell.value)
+  console.log('moves is ', store.moves)
+  if (store.moves > 8) {
     $('.gameboard').hide()
     $('.tie').show()
-    $('.resetgame').show()
+    console.log('gameOverUI thinks no one won')
+  } else if (store.game.cell.value === 'o') {
+    $('.gameboard').hide()
+    $('.owin').show()
+    console.log('gameOverUI thinks o won')
+  } else {
+    $('.gameboard').hide()
+    $('.xwin').show()
+    console.log('gameOverUI thinks x won')
   }
+}
+
+const selectTileSuccess = () => {
+  isGameOver()
+  gameOver()
+}
+
+const selectTileFailure = (error) => {
 }
 
 module.exports = {
