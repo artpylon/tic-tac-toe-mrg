@@ -59,91 +59,20 @@ const onStartGame = function (event) {
     .catch(ui.startGameFailure)
 }
 
-// const isGameOver = function () {
-//   if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'xxx' || store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'ooo') {
-//     store.game.over = true
-//     return true
-//   } else if (store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'xxx' || store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'ooo') {
-//     store.game.over = true
-//     return true
-//   } else if (store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'xxx' || store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'ooo') {
-//     store.game.over = true
-//     return true
-//   } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'xxx' || store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'ooo') {
-//     store.game.over = true
-//     return true
-//   } else if (store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'xxx' || store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'ooo') {
-//     store.game.over = true
-//     return true
-//   } else if (store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'xxx' || store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'ooo') {
-//     store.game.over = true
-//     return true
-//   } else if (store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'xxx' || store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'ooo') {
-//     store.game.over = true
-//     return true
-//   } else if (store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'xxx' || store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'ooo') {
-//     store.game.over = true
-//     return true
-//   } else if (store.moves > 8) {
-//     store.game.over = true
-//     return true
-//   } else { store.game.over = false }
-// }
-
 const onSelectTile = function (event) {
-  console.log('this is the tile event data id', this.dataset.id)
   event.preventDefault()
   const data = getFormFields(event.target)
   store.game.cell = {}
   store.game.cell.index = this.dataset.id
-  console.log(store.game.cell.index)
   turn()
   store.moves++
   $(this).text(store.game.cell.value)
   $(this).off()
-  // displayGameResult(data)
   api.updateGame(data)
     .then(ui.selectTileSuccess)
     .catch(ui.selectTileFailure)
-  isGameOver()
   store.xTurn = !store.xTurn
-  console.log('player x turn ', store.xTurn)
-  console.log('moves ', store.moves)
-  console.log('this is the store after select tile ', store)
-  console.log('win array ', store.game.cells[0] + store.game.cells[1] + store.game.cells[2])
-  console.log('result of isgameover function ', isGameOver())
-}
-
-const isGameOver = function () {
-  console.log('im inside isGameOVer')
-  // if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'xxx' || store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'ooo') {
-  //   store.game.over = true
-  //   return true
-  // } else if (store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'xxx' || store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'ooo') {
-  //   store.game.over = true
-  //   return true
-  // } else if (store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'xxx' || store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'ooo') {
-  //   store.game.over = true
-  //   return true
-  // } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'xxx' || store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'ooo') {
-  //   store.game.over = true
-  //   return true
-  // } else if (store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'xxx' || store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'ooo') {
-  //   store.game.over = true
-  //   return true
-  // } else if (store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'xxx' || store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'ooo') {
-  //   store.game.over = true
-  //   return true
-  // } else if (store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'xxx' || store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'ooo') {
-  //   store.game.over = true
-  //   return true
-  // } else if (store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'xxx' || store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'ooo') {
-  //   store.game.over = true
-  //   return true
-  // } else if (store.moves > 8) {
-  //   store.game.over = true
-  //   return true
-  // } else { store.game.over = false }
+  console.log('store after select tile is done ', store)
 }
 
 const turn = function () {
@@ -164,6 +93,15 @@ const turn = function () {
 //   }
 // }
 
+const gameOver = function () {
+  if (store.game.over === true) {
+    gameOverUI()
+  }
+}
+
+const resetBoard = function () {
+}
+
 const addHandlers = () => {
   // Authentication
   $('#zero').data('id', 0)
@@ -183,6 +121,7 @@ const addHandlers = () => {
   $('#six').on('click', onSelectTile)
   $('#seven').on('click', onSelectTile)
   $('#eight').on('click', onSelectTile)
+  $('.resetgame').on('click', resetBoard)
 }
 
 module.exports = {

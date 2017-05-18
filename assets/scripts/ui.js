@@ -58,10 +58,60 @@ const startGameSuccess = (data) => {
 const startGameFailure = (error) => {
 }
 
+const isGameOver = function () {
+  if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'xxx' || store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'ooo') {
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'xxx' || store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'ooo') {
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'xxx' || store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'ooo') {
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'xxx' || store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'ooo') {
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'xxx' || store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'ooo') {
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'xxx' || store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'ooo') {
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'xxx' || store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'ooo') {
+    store.game.over = true
+    return store.game.over
+  } else if (store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'xxx' || store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'ooo') {
+    store.game.over = true
+    return store.game.over
+  } else if (store.moves > 8) {
+    store.game.over = true
+    return store.game.over
+  } else { store.game.over = false }
+  return store.game.over
+}
+
 const selectTileSuccess = () => {
+  isGameOver()
 }
 
 const selectTileFailure = (error) => {
+}
+
+// edge case, someone wins by playing the 9th tile...
+const gameOverUI = function () {
+  if (store.game.value === 'x') {
+    $('.gameboard').hide()
+    $('.xwin').show()
+    $('.resetgame').show()
+  } else if (store.game.value === 'o') {
+    $('.gameboard').hide()
+    $('.ywin').show()
+    $('.resetgame').show()
+  } else {
+    $('.gameboard').hide()
+    $('.tie').show()
+    $('.resetgame').show()
+  }
 }
 
 module.exports = {
@@ -78,5 +128,6 @@ module.exports = {
   startGameSuccess,
   startGameFailure,
   selectTileSuccess,
-  selectTileFailure
+  selectTileFailure,
+  gameOverUI
 }
