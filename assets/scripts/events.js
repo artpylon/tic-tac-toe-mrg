@@ -117,6 +117,7 @@ const resetBoard = function (event) {
   $('.changepwmsg').hide()
   $('.gameboard').show()
   $('#change-password').hide()
+  $('#changepwbutton').show()
   $('.speech').text('Black as midnight on a moonless night.')
   onRestartGame(event)
   api.getIndex()
