@@ -67,11 +67,9 @@ const startGame = function (data) {
     data: '{}'
   })
   .then((response) => {
-    console.log('This is the response when starting a game: ', response)
     store.game = response.game
     store.player_o = response.player_o
     store.over = response.over
-    console.log('This is the store when starting a game: ', store)
   })
 }
 
@@ -90,21 +88,6 @@ const updateGame = function () {
   })
 }
 
-// const endGame = function () {
-//   console.log('endGame api store.game.over is ', store.game.over)
-//   return $.ajax({
-//     url: config.apiOrigin + '/games/' + store.game.id,
-//     method: 'PATCH',
-//     headers: {
-//       Authorization: 'Token token=' + store.userToken
-//     },
-//     data: {"game": {"cell": {"index": store.game.cell.index, "value": store.game.cell.value}}, "over": store.game.over}
-//   })
-  // .then((response) => {
-  //   store.game.cells = response.game.cells
-  // })
-// }
-
 const getIndex = function (data) {
   console.log('store before getIndex ', store)
   return $.ajax({
@@ -117,6 +100,7 @@ const getIndex = function (data) {
   .then((response) => {
     console.log('response.games after index call ', response.games)
     store.games = response.games
+    $('.played').text(store.games.length)
     console.log('store.games after index call ', store.games)
   })
 }

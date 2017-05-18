@@ -4,6 +4,12 @@ const events = require('./events')
 const store = require('./store')
 const ui = require('./ui')
 let whoWon = ''
+// let gamesWon = $.grep(store.games, function() {
+//   return store.games.
+// }
+// $.grep( [ 0, 1, 2 ], function( n, i ) {
+//     return n > 0;
+// }, true );
 
 // Authentication
 
@@ -13,8 +19,7 @@ const signUpSuccess = (data) => {
 }
 const signUpFailure = (error) => {
   $('.errormsg').hide()
-  $('#sign-up').after('<p>Sign up failed. Please check your email and passwords.</p>')
-  $('p').addClass('errormsg')
+  $('.errormsg').text('Sign up failed. Please check your email and passwords.')
 }
 
 const signInSuccess = (data) => {
@@ -32,28 +37,41 @@ const signInSuccess = (data) => {
 
 const signInFailure = (error) => {
   $('.errormsg').hide()
-  $('#sign-in').after('<p>Sign in failed. Please check your email and password.</p>')
-  $('p').addClass('errormsg')
+  $('.errormsg').text('Sign in failed. Please check your email and password.')
 }
 
 const changePasswordSuccess = (data) => {
-  console.log('success')
   $('#change-password').hide()
   $('.errormsg').hide()
   $('.changepw-success').text('Password has been changed.')
 }
 const changePasswordFailure = (error) => {
-  $('#change-password').after('<p>Change password failed. Please check your passwords.</p>')
+  $('.errormsg').hide()
+  $('.errormsg').text('Change password failed. Please check your passwords.</p>')
 }
 
 const signOutSuccess = (data) => {
-  console.log('success')
   $('.signout-button').hide()
   $('#change-password').hide()
   $('#changepwbutton').hide()
   $('.errormsg').hide()
+  $('.startgame').hide()
+  $('.userstats').hide()
+  $('.xwin').hide()
+  $('.owin').hide()
+  $('.tie').hide()
   $('#sign-up').show()
   $('#sign-in').show()
+  $('.gameboard').show()
+  $('#zero').off('click', events.onSelectTile).text('')
+  $('#one').off('click', events.onSelectTile).text('')
+  $('#two').off('click', events.onSelectTile).text('')
+  $('#three').off('click', events.onSelectTile).text('')
+  $('#four').off('click', events.onSelectTile).text('')
+  $('#five').off('click', events.onSelectTile).text('')
+  $('#six').off('click', events.onSelectTile).text('')
+  $('#seven').off('click', events.onSelectTile).text('')
+  $('#eight').off('click', events.onSelectTile).text('')
 }
 const signOutFailure = (error) => {
   $('.errormsg').hide()
@@ -91,78 +109,78 @@ const restartGameFailure = (error) => {
 const isGameOver = function () {
   if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'xxx') {
     whoWon = 'x'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[0] + store.game.cells[1] + store.game.cells[2] === 'ooo') {
     whoWon = 'o'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'xxx') {
     whoWon = 'x'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[3] + store.game.cells[4] + store.game.cells[5] === 'ooo') {
     whoWon = 'o'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'xxx') {
     whoWon = 'x'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[6] + store.game.cells[7] + store.game.cells[8] === 'ooo') {
     whoWon = 'o'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'xxx') {
     whoWon = 'x'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[0] + store.game.cells[3] + store.game.cells[6] === 'ooo') {
     whoWon = 'o'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'xxx') {
     whoWon = 'x'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[1] + store.game.cells[4] + store.game.cells[7] === 'ooo') {
     whoWon = 'o'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'xxx') {
     whoWon = 'x'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[2] + store.game.cells[5] + store.game.cells[8] === 'ooo') {
     whoWon = 'o'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'xxx') {
     whoWon = 'x'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[0] + store.game.cells[4] + store.game.cells[8] === 'ooo') {
     whoWon = 'o'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'xxx') {
     whoWon = 'x'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.game.cells[2] + store.game.cells[4] + store.game.cells[6] === 'ooo') {
     whoWon = 'o'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
   } else if (store.moves > 8) {
     whoWon = 'Nobody'
-    store.game.over = true
+    store.game.over = 1
     return store.game.over
-  } else { store.game.over = false }
+  } else { store.game.over = 0 }
   return store.game.over
 }
 
 const gameOver = function () {
-  if (store.game.over === true) {
+  if (store.game.over === 1) {
     $('#zero').off('click', events.onSelectTile)
     $('#one').off('click', events.onSelectTile)
     $('#two').off('click', events.onSelectTile)
@@ -212,8 +230,13 @@ const selectTileFailure = (error) => {
 
 const getStatsSuccess = (data) => {
   console.log('store.games after index call ', store.games)
+  $('.played').text(store.games.length)
 }
+
 const getStatsFailure = (error) => {
+  $('.errormsg').hide()
+  $('.played').after('<p>Stats failed. Please contact the webmaster.</p>')
+  $('p').addClass('errormsg')
 }
 
 module.exports = {
