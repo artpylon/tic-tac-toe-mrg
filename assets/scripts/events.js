@@ -111,6 +111,7 @@ const resetBoard = function (event) {
   $('.tie').hide()
   $('.restart').hide()
   $('.gameboard').show()
+  $('#change-password').hide()
   onRestartGame(event)
   api.getIndex()
     .then(ui.getStatsSuccess)
