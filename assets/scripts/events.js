@@ -51,6 +51,15 @@ const showChangePassword = function (event) {
 
 // Game
 const onStartGame = function (event) {
+  $('#zero').on('click', onSelectTile)
+  $('#one').on('click', onSelectTile)
+  $('#two').on('click', onSelectTile)
+  $('#three').on('click', onSelectTile)
+  $('#four').on('click', onSelectTile)
+  $('#five').on('click', onSelectTile)
+  $('#six').on('click', onSelectTile)
+  $('#seven').on('click', onSelectTile)
+  $('#eight').on('click', onSelectTile)
   store.moves = 0
   store.xTurn = true
   event.preventDefault()
@@ -66,6 +75,7 @@ const onSelectTile = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
   store.game.cell = {}
+  console.log('onSelectTile store.game.cell is ', store.game.cell)
   store.game.cell.index = this.dataset.id
   turn()
   store.moves++
@@ -96,6 +106,7 @@ const onRestartGame = function (event) {
 const resetBoard = function (event) {
   store.game = {}
   store.moves = 0
+  store.xTurn = true
   console.log('resetBoard moves ', store.moves)
   $('#zero').on('click', onSelectTile).text('')
   $('#one').on('click', onSelectTile).text('')
@@ -124,15 +135,15 @@ const addHandlers = () => {
   $('#changepwbutton').on('click', showChangePassword)
   // Game
   $('.startgame').on('click', onStartGame)
-  $('#zero').on('click', onSelectTile)
-  $('#one').on('click', onSelectTile)
-  $('#two').on('click', onSelectTile)
-  $('#three').on('click', onSelectTile)
-  $('#four').on('click', onSelectTile)
-  $('#five').on('click', onSelectTile)
-  $('#six').on('click', onSelectTile)
-  $('#seven').on('click', onSelectTile)
-  $('#eight').on('click', onSelectTile)
+  // $('#zero').on('click', onSelectTile)
+  // $('#one').on('click', onSelectTile)
+  // $('#two').on('click', onSelectTile)
+  // $('#three').on('click', onSelectTile)
+  // $('#four').on('click', onSelectTile)
+  // $('#five').on('click', onSelectTile)
+  // $('#six').on('click', onSelectTile)
+  // $('#seven').on('click', onSelectTile)
+  // $('#eight').on('click', onSelectTile)
   $('.restart').on('click', resetBoard)
 }
 

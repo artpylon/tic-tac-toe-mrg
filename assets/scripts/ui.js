@@ -62,20 +62,6 @@ const startGameFailure = (error) => {
 
 const restartGameSuccess = (data) => {
   $('.startgame').hide()
-  // $('#zero').on('click', events.onSelectTile).text('')
-  // $('#one').on('click', events.onSelectTile).text('')
-  // $('#two').on('click', events.onSelectTile).text('')
-  // $('#three').on('click', events.onSelectTile).text('')
-  // $('#four').on('click', events.onSelectTile).text('')
-  // $('#five').on('click', events.onSelectTile).text('')
-  // $('#six').on('click', events.onSelectTile).text('')
-  // $('#seven').on('click', events.onSelectTile).text('')
-  // $('#eight').on('click', events.onSelectTile).text('')
-  // $('.xwin').hide()
-  // $('.owin').hide()
-  // $('.tie').hide()
-  // $('.restart').hide()
-  // $('.gameboard').show()
 }
 
 const restartGameFailure = (error) => {
@@ -115,6 +101,15 @@ const isGameOver = function () {
 
 const gameOver = function () {
   if (store.game.over === true) {
+    $('#zero').off('click', events.onSelectTile)
+    $('#one').off('click', events.onSelectTile)
+    $('#two').off('click', events.onSelectTile)
+    $('#three').off('click', events.onSelectTile)
+    $('#four').off('click', events.onSelectTile)
+    $('#five').off('click', events.onSelectTile)
+    $('#six').off('click', events.onSelectTile)
+    $('#seven').off('click', events.onSelectTile)
+    $('#eight').off('click', events.onSelectTile)
     gameOverUI()
   }
 }
