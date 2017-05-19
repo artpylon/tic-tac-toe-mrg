@@ -2,8 +2,83 @@
 Creator: Matt Gray
 Date: 5/18/17
 Public URL: artpylon.github.io/tic-tac-toe-mrg
+
 Public Trello Board: https://trello.com/b/So4zIsSQ/wdi-1-tic-tac-toe
 Wireframes: https://drive.google.com/drive/folders/0BxtpRPyddhwRUmh2LWh5eHZOdzQ?usp=sharing
+
+USER STORIES:
+
+*AUTH:*
+
+CREATE ACCOUNT:
+As a user, I would like to create an account, so that I can login and play the game.
+Acceptance criteria:
+- Creating an account should also log that user in.
+
+LOGIN:
+As a user, I would like to be able to login, so that I can play the game and the results of my games may be tracked and stored with my account.
+
+LOGOUT:
+As a user, I would like to logout after completing a session, so that others who use my computer do not play on my account.
+
+CHANGE PASSWORD:
+As a user, I would like to be able to change my password, so that I can login using a new password
+
+*GAMEPLAY:*
+
+GAMEBOARD:
+As a user, I would like to have an interactive game board, so that I and another player can play tic-tac-toe.
+Acceptance criteria:
+- Game board should have a 3x3 grid of selectable tiles
+- Tiles should only be selectable when a game has been started
+- Tiles should only be selectable on a player's turn, by that player
+
+START GAME:
+As a logged in user, I would like to be able to start a new game, so that I can play tic-tac-toe.
+Acceptance Criteria:
+- Only logged in users may start games
+- User should be able to start a subsequent game after completing the first
+
+SELECT TILE:
+As a logged in user who has started a game, I would like to be able to select a tile on the game board, so that I can play the game.
+Acceptance criteria:
+- Only logged in users may select tiles on the game board
+- Once a tile has been selected, it may not be selected again until a new game is started
+- When a tile is selected, the user should be given visual feedback that they now occupy that tile, i.e. tile is filled with a large x or o.
+- The first tile selected on the gameboard is, by default, x
+
+LOSE GAME:
+As a logged in user who has started a game, I would like to know when I've lost a game, so that I can decide whether to play again and deal with the accompanying shame accordingly.
+Acceptance criteria:
+- User has lost a game with the other player in that game has selected 3 consecutive tiles.
+- User should receive visual feedback that they have lost the game
+- User should be prompted to play again
+- Record of the user's loss should be stored with that user's account
+
+WIN GAME:
+As a logged in user who has started a game, I would like to know when I've won a game, so that I may brag about it.
+Acceptance criteria:
+- User wins a game when 3 consecutive tiles are occupied with that user's piece (x or o).
+- Consecutive tiles are accepted vertically, horizontally, and diagonally.
+- Record of the win should be stored with that user's account.
+- User should receive visual feedback that they've won the game.
+- User should be prompted to play again.
+
+TIE GAME:
+As a logged in user who has started a game, I would like to know when my game as resulted in a tie, so that I can decide whether to play again.
+Acceptance criteria:
+- A game is tied when all tiles on the gameboard are filled and neither player has successfully selected three consecutive tiles
+- User should receive visual feedback that the game is complete and resulted in a tie.
+- Record of the tie result should be stored in the user's account.
+- User should be prompted to play again.
+
+PLAY AGAIN:
+As a logged in user, I would like to be presented with the option to play another game after completing one, so that I can continue playing.
+
+USER STATS:
+As a logged in user, I would like to see my stats, such as how many games I've played, so that I can keep track of my tic tac toe record over time.
+
+--------------
 
 Technologies Used:
 - javascript
