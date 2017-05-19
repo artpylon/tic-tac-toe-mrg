@@ -58,6 +58,8 @@ const onStartGame = function (event) {
   $('#seven').on('click', onSelectTile)
   $('#eight').on('click', onSelectTile)
   $('#change-password').hide()
+  $('.changepwmsg').hide()
+  $('#changepwbutton').show()
   $('.played').text(store.games.length)
   store.moves = 0
   store.xTurn = true
