@@ -229,6 +229,7 @@ const gameOverUI = function () {
 
 const selectTileSuccess = () => {
   $('.speech').text('Nothing beats the taste sensation when maple syrup collides with ham.')
+  $('.errormsg').hide()
   isGameOver()
   gameOver()
 }
